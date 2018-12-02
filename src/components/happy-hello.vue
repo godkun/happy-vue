@@ -1,12 +1,12 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}hahahah</h1>
+    <h1>{{ msg }}这是测试全局组件的哦</h1>
   </div>
 </template>
 
 <script>
 export default {
-  // name: 'Happy',
+  name: 'HappyHello',
   props: {
     msg: String
   }

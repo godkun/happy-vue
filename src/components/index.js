@@ -1,27 +1,25 @@
-import Vue from 'vue'
-import upperFirst from 'lodash/upperFirst'
-import camelCase from 'lodash/camelCase'
 
-const requireComponent = require.context(
-  // Look for files in the current directory
-  './components',
-  true,
-  /_happy-\w+\.(vue|js)$/
-)
+// 请按照名称的字典顺序添加以下 component
+import HappyHello from './happy-hello';
+import HappyDialog from './happy-dialog'
 
-// For each matching file name...
-requireComponent.keys().forEach(fileName => {
-  // Get the component config
-  const componentConfig = requireComponent(fileName)
-  // Get the PascalCase version of the component name
-  const componentName = upperFirst(
-    camelCase(
-      fileName
-        .replace(/^\.\/_/, '')
-        // Remove the file extension from the end
-        .replace(/\.\w+$/, '')
-    )
-  )
-  // Globally register the component
-  Vue.component(componentName, componentConfig.default || componentConfig)
-})
+
+const daoStyleComponents = {
+  // 请按照名称的字典顺序添加以下内容
+  HappyHello,
+  HappyDialog
+};
+
+let myPlugin = {}
+
+myPlugin.install = function(Vue) {
+  Object.keys(daoStyleComponents).forEach((key) => {
+    Vue.component(key, daoStyleComponents[key]);
+  });
+}
+
+// auto install
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
+}
+export default myPlugin
