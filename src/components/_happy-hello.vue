@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Happy',
+  // name: 'Happy',
   props: {
     msg: String
   }
@@ -14,6 +14,7 @@ export default {
 </script>
 
 <style scoped = 'scss'>
+@import '../design/happy-color.scss';
 h3 {
   margin: 40px 0 0;
 }

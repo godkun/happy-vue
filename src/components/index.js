@@ -4,9 +4,9 @@ import camelCase from 'lodash/camelCase'
 
 const requireComponent = require.context(
   // Look for files in the current directory
-  '.',
-  false,
-  /\w+\.(vue|js)$/
+  './components',
+  true,
+  /_happy-\w+\.(vue|js)$/
 )
 
 // For each matching file name...
@@ -17,8 +17,7 @@ requireComponent.keys().forEach(fileName => {
   const componentName = upperFirst(
     camelCase(
       fileName
-        // Remove the "./_" from the beginning
-        // .replace(/^\.\/_/, '')
+        .replace(/^\.\/_/, '')
         // Remove the file extension from the end
         .replace(/\.\w+$/, '')
     )
